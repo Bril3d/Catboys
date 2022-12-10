@@ -1,1 +1,1 @@
-Fetching catboys random images along with the artist name
+Save your best CatBoys collection.
