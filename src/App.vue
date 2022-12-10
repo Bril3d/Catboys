@@ -5,9 +5,12 @@
       <button @click="saveCat">Save It</button>
     </div>
 
-      <div v-if="(imgs && loading)" class="card">
-        <img :src="imgs.url" :alt="imgs.source_url">
-        <h1>{{imgs.artist}}</h1>
+      <div v-if="(imgs && loading)">
+        <div class="card">
+          <img :src="imgs.url" :alt="imgs.source_url">
+        </div>
+        
+        <h1 class="text">{{imgs.artist}}</h1>
       </div>
       
       <div v-else>
@@ -30,14 +33,17 @@ font-family: sans-serif;
 }
 .card {
   width: 500px;
-  height: 800px;
+  height: 700px;
+}
+.text {
   color: red;
   text-align: center;
 }
 img {
   object-fit: cover;
   width: 100%;
-  height: 80%;
+  height: 100%;
+
 }
 button{
 padding: 5px 10px;
