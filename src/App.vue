@@ -2,7 +2,7 @@
   <div id="main">
     <div>
       <button @click="fetchData">Fetch Another Image</button>
-      <button @click="saveCat">Save It</button>
+      <button :disabled="disabled" :class="disabled ? 'op' : ''" @click="saveCat">Save It</button>
     </div>
 
       <div v-if="(imgs && loading)">
@@ -55,6 +55,9 @@ width: fit-content;
 cursor: pointer;
 
 }
+.op {
+  opacity: 0.5;
+}
 </style>
 <script>
 import CatBoysCollection from "./components/CatBoysCollection.vue";
@@ -64,6 +67,7 @@ export default {
       imgs:null,
       loading:false,
       stored:[],
+      disabled:false
     }
     
   },
@@ -76,6 +80,7 @@ methods: {
     const res = await fetch('https://api.catboys.com/img');
     const json = await res.json();
     this.imgs = json;
+    this.disabled = false;
     setTimeout(()=>{
       this.loading = true;
     },1000)
@@ -84,6 +89,7 @@ methods: {
   saveCat(){
     this.stored.push(this.imgs)
     localStorage.setItem('CatBoys', JSON.stringify(this.stored));
+    this.disabled = true;
   }
 },
 mounted() {
